@@ -1,0 +1,7 @@
+big_data_kafka/LikesCountsConsumer.py
+big_data_kafka/__init__.py
+big_data_kafka.egg-info/PKG-INFO
+big_data_kafka.egg-info/SOURCES.txt
+big_data_kafka.egg-info/dependency_links.txt
+big_data_kafka.egg-info/not-zip-safe
+big_data_kafka.egg-info/top_level.txt
