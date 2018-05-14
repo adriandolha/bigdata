@@ -1,27 +1,18 @@
 import json
-from collections import namedtuple
-from pyspark import SparkConf, SparkContext
-from pyspark.streaming import StreamingContext
-from pyspark.streaming.kafka import KafkaUtils
-from confluent_kafka import Producer
+
 from dateutil import parser
 from pykafka import KafkaClient
+from pyspark import SparkContext
+from pyspark.streaming import StreamingContext
+from pyspark.streaming.kafka import KafkaUtils
 
-def pushLikesCountsToKafka(status_counts):
+
+def push_likes_counts_to_kafka(status_counts):
     client = KafkaClient(hosts="localhost:9092")
     topic = client.topics[b'likes-counts']
     for status_count in status_counts:
         with topic.get_producer() as producer:
             producer.produce(json.dumps(status_count).encode('utf-8'))
-
-
-def pushLikesCountsToKafkaC(likes_counts):
-    producer = Producer({'bootstrap.servers': 'localhost:9092'})
-    for likes_count in likes_counts:
-        producer.produce('likes-count',
-                         # value=json.dumps(likes_count).encode('utf-8'))
-                         value=likes_count)
-
 
 if __name__ == "__main__":
     sc = SparkContext(appName='PythonStreamingDirectKafkaWordCount')
@@ -34,7 +25,7 @@ if __name__ == "__main__":
         .reduceByKey(lambda a, b: a + b)
 
     counts.pprint()
-    counts.foreachRDD(lambda rdd: rdd.foreachPartition(pushLikesCountsToKafka))
+    counts.foreachRDD(lambda rdd: rdd.foreachPartition(push_likes_counts_to_kafka))
 
     ssc.start()
     ssc.awaitTermination()

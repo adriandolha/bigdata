@@ -8,4 +8,4 @@ setup(name='big_data_kafka',
       author_email='adrianddolha@yahoo.com',
       license='MIT',
       packages=['big_data_kafka'],
-      zip_safe=False)
+      zip_safe=False, install_requires=['pykafka', 'pyspark', 'faker', 'faker_web'])

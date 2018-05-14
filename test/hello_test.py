@@ -1,10 +1,11 @@
 from collections import namedtuple
 import json
 import unittest
-import HelloKafkaProducer
-import DataUnit
-import JsonUtils
+import big_data_sampler
+import data_unit
 import uuid
+from big_data_sampler import *
+
 
 class LoadTestKafkaProducer(unittest.TestCase):
 
@@ -23,31 +24,26 @@ class LoadTestKafkaProducer(unittest.TestCase):
             s.split(2)
 
     def test_kafka(self):
-        print('Producing bd.kafka messages')
-        producer = HelloKafkaProducer.BigDataSampler()
-        for _ in range(100000):
-            if (_ + 1) % 1000 == 0:
-                print('Sent ' + _.__str__() + ' message')
-            producer.send(key=uuid.uuid1().__str__(),value=DataUnit.fakeFacebookLike()._asdict())
-        producer.close()
+        create_facebook_likes_sample(1000000)
 
     def test_generate_users(self):
         with open('users.json', 'w') as outfile:
             users = []
             for _ in range(1000):
-                users.append(DataUnit.fakeUser()._asdict())
+                users.append(data_unit.fake_user()._asdict())
             json.dump(users, outfile)
+
     def test_generate_facebook_likes(self):
         for _ in range(1000):
-            DataUnit.fakeFacebookLike()
+            data_unit.fake_facebook_like()
+
     def test_read_data(self):
         with open('/Users/lavi/Documents/Adi/data/users.json') as data:
             users = json.loads(data.read())
             print(users[0]['name'])
 
-        users = DataUnit.getUsers()
+        users = data_unit.get_users()
         print(users)
-
 
 
 if __name__ == '__main__':
