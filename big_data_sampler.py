@@ -1,7 +1,7 @@
 import logging
 import uuid
 
-from kafka_producer import get_producer, produce
+from kafka_producer import get_producer, produce_from_generator
 from data_unit import *
 
 logging.basicConfig(level=logging.DEBUG)
@@ -9,8 +9,9 @@ logging.basicConfig(level=logging.DEBUG)
 
 def create_facebook_likes_sample(count):
     print('Producing bd.kafka messages')
-    producer = get_producer('bdsample')
+    produce_from_generator('bdsample', lambda: generate_likes(count))
+
+
+def generate_likes(count):
     for _ in range(count):
-        produce(producer, fake_facebook_like()._asdict())
-        if (_ + 1) % 1000 == 0:
-            print('Sent ' + _.__str__() + ' message')
+        yield fake_facebook_like()._asdict()
