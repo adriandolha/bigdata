@@ -1,6 +1,6 @@
 from setuptools import setup
 
-setup(name='big_data_kafka',
+setup(name='big_data',
       version='0.1',
       description='Kafka module',
       url='http://github.com/big-data/kafka',

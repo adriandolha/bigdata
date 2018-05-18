@@ -23,7 +23,7 @@ class TestBigData(object):
             s.split(2)
 
     def test_kafka(self):
-        create_facebook_likes_sample(10000000)
+        create_facebook_likes_sample(10000000, 3)
 
     def test_kafka_profile(self):
         cProfile.run("""

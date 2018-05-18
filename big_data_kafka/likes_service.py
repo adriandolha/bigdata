@@ -3,7 +3,7 @@ import logging
 from collections import namedtuple
 
 from flask_socketio import SocketIO
-from kafka_consumer import consume
+from big_data_kafka.kafka_consumer import consume
 logging.basicConfig(level=logging.DEBUG)
 
 
