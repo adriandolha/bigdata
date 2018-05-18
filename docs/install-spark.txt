@@ -1,0 +1,11 @@
+https://medium.com/@GalarnykMichael/install-spark-on-windows-pyspark-4498a5d8d66c
+mv C:\Users\adolha\Downloads\spark-2.3.0-bin-hadoop2.7.tgz C:\opt\spark\spark-2.3.0-bin-hadoop2.7.tgz
+setx SPARK_HOME C:\opt\spark\spark-2.3.0-bin-hadoop2.7
+
+setx HADOOP_HOME C:\opt\spark\spark-2.3.0-bin-hadoop2.7
+
+setx PYSPARK_DRIVER_PYTHON ipython
+
+setx PYSPARK_DRIVER_PYTHON_OPTS notebook
+
+password: Dentsu#$
