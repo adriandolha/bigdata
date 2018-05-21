@@ -5,3 +5,6 @@ venv
 dist
 build
 *.egg
+big_data.egg-info
+node/node-modules
+*.prof
