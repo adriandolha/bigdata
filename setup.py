@@ -7,5 +7,7 @@ setup(name='big_data',
       author='Adrian Dolha',
       author_email='adrianddolha@yahoo.com',
       license='MIT',
-      packages=['big_data_kafka'],
-      zip_safe=False, install_requires=['pykafka', 'pyspark', 'faker', 'faker_web'])
+      packages=['big_data_kafka', 'compute_jobs'],
+      include_package_data=True,
+      zip_safe=False,
+      install_requires=['pykafka', 'pyspark', 'faker', 'faker_web'])
